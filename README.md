@@ -73,10 +73,6 @@ OpenCV Community: For comprehensive computer vision tools
 ##
 
 <p align="center">
-  <a href="mailto:syfaxaitmedjber@gmail.com">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Gmail_Icon.png" width="50"/>
-  </a>
-  &nbsp;&nbsp;&nbsp;&nbsp;
   <a href="https://www.linkedin.com/in/syfax-ait-medjber/">
     <img src="https://img.icons8.com/ios-filled/50/0A66C2/linkedin.png" width="50"/>
   </a>
