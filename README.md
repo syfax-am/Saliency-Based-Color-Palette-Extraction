@@ -35,6 +35,19 @@
 - **Streamlit Interface**: Clean, user-friendly app that’s easy to use.
 - **Research-Backed**: Direct link to the original academic paper.
 
+## <img src="https://img.icons8.com/ios-filled/50/FFFFFF/picture.png" width="18"/> Examples
+Here are a few sample palette extractions generated with the application:
+
+### Example 1
+<p align="center">
+  <img src="https://raw.githubusercontent.com/syfax-am/Saliency-Based-Color-Palette-Extraction/refs/heads/main/src/example1.png" width="50%">
+</p>
+
+### Example 2
+<p align="center">
+  <img src="https://raw.githubusercontent.com/syfax-am/Saliency-Based-Color-Palette-Extraction/refs/heads/main/src/example2.png" width="50%">
+</p>
+
 ## <img src="https://img.icons8.com/ios-filled/50/FFFFFF/lightning-bolt.png" width="18"/> Quick Start
 
 ### Prerequisites
