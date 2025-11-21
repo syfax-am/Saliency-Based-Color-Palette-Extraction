@@ -386,7 +386,7 @@ with st.expander("**🟢 Interested in my skills? Let's work together!**", expan
     with col4:
         st.markdown(f"""
         <div style="text-align: center;">
-          <a href="https://my-portfolio.com" target="_blank">
+          <a href="https://syfax-am.github.io/" target="_blank">
             {portfolio_icon}<br/>
             <strong>Portfolio</strong>
           </a>
