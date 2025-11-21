@@ -7,10 +7,9 @@ import io
 import base64
 
 # --- Automatically add the project root to PYTHONPATH ---
-ROOT = pathlib.Path(__file__).resolve().parents[1]  # parent of the 'app' folder
+ROOT = pathlib.Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
-# -------------------------------------------------------------
 
 import streamlit as st
 import numpy as np
@@ -22,19 +21,20 @@ from app.core.saliency import compute_combined_saliency
 from app.core.palette_extraction import extract_palette
 from app.visualization.plot_palette import show_palette
 from app.visualization.color_space_plot import plot_lab_space
+from app.core.log_utils import get_logger
+
+logger = get_logger(__name__)
 
 def image_to_base64(image):
-    """Convert a PIL image to base64 string."""
     buffer = io.BytesIO()
     image.save(buffer, format="PNG")
     return base64.b64encode(buffer.getvalue()).decode()
 
 def rgb_to_cmyk(rgb):
-    """Convert RGB to CMYK values."""
     r, g, b = rgb[0]/255.0, rgb[1]/255.0, rgb[2]/255.0
     
     k = 1 - max(r, g, b)
-    if k == 1:  # Pure black
+    if k == 1:
         return 0, 0, 0, 100
     
     c = (1 - r - k) / (1 - k) * 100
@@ -44,25 +44,13 @@ def rgb_to_cmyk(rgb):
     
     return int(c), int(m), int(y), int(k)
 
-# =============================
-# Page configuration
-# =============================
 st.set_page_config(
     page_title="Saliency-Based Palette Extraction",
     page_icon=str(ROOT / "src" / "logo.ico"),
     layout="wide"
 )
 
-# =============================
-# Version
-# =============================
 APP_VERSION = "v1.0.0"
-
-# =============================
-# Title and description
-# =============================
-# Show logo next to the app title by embedding the local image as base64.
-# This is robust across different working directories and deployment.
 
 logo_path = ROOT / "src" / "logo.png"
 
@@ -83,15 +71,14 @@ try:
             ''',
             unsafe_allow_html=True
         )
+        logger.info("✅ Logo loaded successfully")
 except Exception as e:
     st.title("Saliency-Based Palette Extraction")
     st.error(f"Could not load logo: {e}")
+    logger.error(f"❌ Failed to load logo: {str(e)}")
 
 st.caption("Implementation inspired by *Jahanian et al., 2015 — Purdue University*")
 
-# =============================
-# Description
-# ============================
 description_html = f"""
 <div style="max-width: 100%; line-height: 1.6; font-size: 1rem;">
     This application extracts a <b>perceptually meaningful color palette</b> from an image
@@ -117,36 +104,39 @@ if pdf_path.exists():
         file_name="Autonomous_Color_Theme_Extraction.pdf",
         mime="application/pdf"
     )
+    logger.info("✅ PDF article found and download button added")
 else:
     st.warning("PDF article not found in src/")
+    logger.warning("⚠️ PDF article not found in src/")
 
-
-# =============================
-# Image uploader
-# =============================
 uploaded_file = st.file_uploader("📁 Choose an image (jpg, png)...", type=["jpg", "jpeg", "png"])
 
 if uploaded_file:
-    # Display only the filename
+    logger.info(f"Image uploaded: {uploaded_file.name}, size: {uploaded_file.size} bytes")
     st.write(f"**Uploaded file:** {uploaded_file.name}")
 
-    # Load the image
-    image = Image.open(uploaded_file).convert("RGB")
-    image_np = np.array(image)
+    try:
+        image = Image.open(uploaded_file).convert("RGB")
+        image_np = np.array(image)
+        logger.info(f"Image loaded successfully: {image_np.shape}")
+    except Exception as e:
+        logger.error(f"❌ Failed to load image: {str(e)}")
+        st.error(f"❌ Error loading image: {str(e)}")
+        st.stop()
 
-    # Compute saliency and palette
     with st.spinner("Computing saliency map and extracting colors..."):
-        # Step 1: Combined saliency map (GBVS + FTS)
+        logger.info("Starting saliency computation")
         saliency_map = compute_combined_saliency(image_np)
+        logger.info(f"✅ Saliency computed - min: {saliency_map.min():.3f}, max: {saliency_map.max():.3f}, mean: {saliency_map.mean():.3f}")
         
-        # Step 2: Palette extraction based on the paper
         try:
             palette = extract_palette(image_np, saliency_map)
+            logger.info(f"Palette extracted with {len(palette)} colors")
         except Exception as e:
+            logger.error(f"❌ Error during extraction: {str(e)}", exc_info=True)
             st.error(f"❌ Error during extraction: {str(e)}")
             st.stop()
 
-    # Normalize palette weights
     total_weight = sum(color_info['Weight'] for color_info in palette)
     normalized_palette = []
     for color_info in palette:
@@ -155,8 +145,8 @@ if uploaded_file:
         normalized_palette.append(normalized_color)
     
     palette = normalized_palette
+    logger.info(f"Palette weights normalized: {[f'{c['Weight']*100:.1f}%' for c in palette]}")
 
-    # Extracted colors section
     st.write("## Extracted Colors")
     
     col1, col2, col3, col4, col5 = st.columns([1, 1, 2, 1, 1])
@@ -291,12 +281,13 @@ if uploaded_file:
         st.image(saliency_display, caption="Combined Saliency Map (JET colormap)", use_container_width=True)
 
     with st.expander("🧭 CIELab Space Visualization (scientific)", expanded=False):
+        logger.info("Generating CIELab space visualization")
         plot_lab_space(palette)
 
 else:
+    logger.info("ℹ️ No image uploaded yet - waiting for user input")
     st.info("Please upload an image to begin.")
 
-# JavaScript enabling HEX code copying on click
 st.markdown("""
 <script>
 function setupColorCopy() {
@@ -332,14 +323,8 @@ observer.observe(document.body, { childList: true, subtree: true });
 </script>
 """, unsafe_allow_html=True)
 
-# =====================================================================
-# ========================= 🔽 FOOTER ADDED 🔽 =========================
-# =====================================================================
-
-# --- Stylish Contact Footer ---
 st.markdown("---")
 
-# SVG Icons
 email_icon = """
 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
   <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
@@ -413,3 +398,4 @@ with st.expander("**🟢 Interested in my skills? Let's work together!**", expan
         "*I’m passionate about Data Science and AI - especially NLP, Computer Vision, and model deployment. Always happy to connect, share ideas, or collaborate on meaningful projects.*"
     )
 
+logger.info("Streamlit app startup completed")

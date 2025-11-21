@@ -1,0 +1,60 @@
+[2025-11-21 14:44:32] [__main__] [INFO] ✅ Logo loaded successfully
+[2025-11-21 14:44:32] [__main__] [INFO] ✅ PDF article found and download button added
+[2025-11-21 14:44:32] [__main__] [INFO] ℹ️ No image uploaded yet - waiting for user input
+[2025-11-21 14:44:32] [__main__] [INFO] 🚀 Streamlit app startup completed
+[2025-11-21 14:44:44] [__main__] [INFO] ✅ Logo loaded successfully
+[2025-11-21 14:44:44] [__main__] [INFO] ✅ PDF article found and download button added
+[2025-11-21 14:44:44] [__main__] [INFO] 📁 Image uploaded: 102041939.jpg, size: 46842 bytes
+[2025-11-21 14:44:44] [__main__] [INFO] 🖼️ Image loaded successfully: (440, 440, 3)
+[2025-11-21 14:44:44] [__main__] [INFO] 🔍 Starting saliency computation
+[2025-11-21 14:44:44] [app.core.saliency] [INFO] Starting combined saliency computation
+[2025-11-21 14:44:44] [app.core.saliency] [INFO] Combined saliency computed - min: 0.000, max: 1.000, mean: 0.316
+[2025-11-21 14:44:44] [__main__] [INFO] ✅ Saliency computed - min: 0.000, max: 1.000, mean: 0.316
+[2025-11-21 14:44:44] [app.core.palette_extraction] [INFO] Starting palette extraction
+[2025-11-21 14:45:06] [app.core.palette_extraction] [INFO] ✅ Palette extraction completed successfully
+[2025-11-21 14:45:06] [__main__] [INFO] 🎨 Palette extracted with 5 colors
+[2025-11-21 14:45:06] [__main__] [INFO] 📊 Palette weights normalized: ['32.1%', '11.3%', '10.0%', '18.7%', '27.9%']
+[2025-11-21 14:45:06] [__main__] [INFO] 📊 Generating CIELab space visualization
+[2025-11-21 14:45:06] [app.visualization.color_space_plot] [INFO] Generating CIELab space visualization
+[2025-11-21 14:45:12] [app.visualization.color_space_plot] [INFO] CIELab visualization completed - Avg color distance: 50.5
+[2025-11-21 14:45:12] [__main__] [INFO] 🚀 Streamlit app startup completed
+[2025-11-21 14:46:55] [__main__] [INFO] ✅ Logo loaded successfully
+[2025-11-21 14:46:55] [__main__] [INFO] ✅ PDF article found and download button added
+[2025-11-21 14:46:55] [__main__] [INFO] ℹ️ No image uploaded yet - waiting for user input
+[2025-11-21 14:46:55] [__main__] [INFO] 🚀 Streamlit app startup completed
+[2025-11-21 14:47:02] [__main__] [INFO] ✅ Logo loaded successfully
+[2025-11-21 14:47:02] [__main__] [INFO] ✅ PDF article found and download button added
+[2025-11-21 14:47:02] [__main__] [INFO] Image uploaded: 102041939.jpg, size: 46842 bytes
+[2025-11-21 14:47:02] [__main__] [INFO] Image loaded successfully: (440, 440, 3)
+[2025-11-21 14:47:02] [__main__] [INFO] Starting saliency computation
+[2025-11-21 14:47:02] [app.core.saliency] [INFO] Starting combined saliency computation
+[2025-11-21 14:47:02] [app.core.saliency] [INFO] Combined saliency computed - min: 0.000, max: 1.000, mean: 0.316
+[2025-11-21 14:47:02] [__main__] [INFO] ✅ Saliency computed - min: 0.000, max: 1.000, mean: 0.316
+[2025-11-21 14:47:02] [app.core.palette_extraction] [INFO] Starting palette extraction
+[2025-11-21 14:47:12] [app.core.palette_extraction] [INFO] ✅ Palette extraction completed successfully
+[2025-11-21 14:47:12] [__main__] [INFO] Palette extracted with 5 colors
+[2025-11-21 14:47:12] [__main__] [INFO] Palette weights normalized: ['32.1%', '11.3%', '10.0%', '18.7%', '27.9%']
+[2025-11-21 14:47:12] [__main__] [INFO] Generating CIELab space visualization
+[2025-11-21 14:47:12] [app.visualization.color_space_plot] [INFO] Generating CIELab space visualization
+[2025-11-21 14:47:13] [app.visualization.color_space_plot] [INFO] CIELab visualization completed - Avg color distance: 50.5
+[2025-11-21 14:47:13] [__main__] [INFO] 🚀 Streamlit app startup completed
+[2025-11-21 14:47:31] [__main__] [INFO] ✅ Logo loaded successfully
+[2025-11-21 14:47:31] [__main__] [INFO] ✅ PDF article found and download button added
+[2025-11-21 14:47:31] [__main__] [INFO] ℹ️ No image uploaded yet - waiting for user input
+[2025-11-21 14:47:31] [__main__] [INFO] Streamlit app startup completed
+[2025-11-21 14:47:36] [__main__] [INFO] ✅ Logo loaded successfully
+[2025-11-21 14:47:36] [__main__] [INFO] ✅ PDF article found and download button added
+[2025-11-21 14:47:36] [__main__] [INFO] Image uploaded: 102041939.jpg, size: 46842 bytes
+[2025-11-21 14:47:36] [__main__] [INFO] Image loaded successfully: (440, 440, 3)
+[2025-11-21 14:47:36] [__main__] [INFO] Starting saliency computation
+[2025-11-21 14:47:36] [app.core.saliency] [INFO] Starting combined saliency computation
+[2025-11-21 14:47:36] [app.core.saliency] [INFO] Combined saliency computed - min: 0.000, max: 1.000, mean: 0.316
+[2025-11-21 14:47:36] [__main__] [INFO] ✅ Saliency computed - min: 0.000, max: 1.000, mean: 0.316
+[2025-11-21 14:47:36] [app.core.palette_extraction] [INFO] Starting palette extraction
+[2025-11-21 14:47:57] [app.core.palette_extraction] [INFO] ✅ Palette extraction completed successfully
+[2025-11-21 14:47:57] [__main__] [INFO] Palette extracted with 5 colors
+[2025-11-21 14:47:57] [__main__] [INFO] Palette weights normalized: ['32.1%', '11.3%', '10.0%', '18.7%', '27.9%']
+[2025-11-21 14:47:57] [__main__] [INFO] Generating CIELab space visualization
+[2025-11-21 14:47:57] [app.visualization.color_space_plot] [INFO] Generating CIELab space visualization
+[2025-11-21 14:47:58] [app.visualization.color_space_plot] [INFO] CIELab visualization completed - Avg color distance: 50.5
+[2025-11-21 14:47:58] [__main__] [INFO] Streamlit app startup completed
